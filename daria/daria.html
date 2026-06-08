@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona z dźwiękiem</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        img {
+            max-width: 45%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+        }
+
+        .instruction {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="instruction"></div>
+
+    <div class="gallery">
+        <img src="daria1.jpg" alt="Zdjęcie Daria 1">
+        <img src="daria2.jpg" alt="Zdjęcie Daria 2">
+    </div>
+
+    <audio id="background-audio" src="buu.mp3" loop></audio>
+
+    <script>
+        // Funkcja aktywująca dźwięk po pierwszym kliknięciu użytkownika
+        window.addEventListener('click', function() {
+            const audio = document.getElementById('background-audio');
+            // Sprawdzamy, czy audio już gra, żeby nie odpalać go na nowo przy każdym kliknięciu
+            if (audio.paused) {
+                audio.play().catch(function(error) {
+                    console.log("Autoplay zablokowany przez przeglądarkę:", error);
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
